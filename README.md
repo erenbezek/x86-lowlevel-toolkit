@@ -18,9 +18,6 @@ x86-lowlevel-toolkit/
 │
 ├── README.md
 │
-├── docs/
-│   └── architecture.md
-│
 ├── src/
 │   │
 │   ├── math/
