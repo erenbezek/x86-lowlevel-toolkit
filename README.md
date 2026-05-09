@@ -1,6 +1,6 @@
 # x86-lowlevel-toolkit
 
-emu8086 gerçek mod x86 assembly geliştirmesi için yeniden kullanılabilir düşük seviyeli yardımcı programlar ve örnek kodlar. Kişisel öğrenme projesi olarak başladı, zamanla büyütülmesi hedefleniyor.
+emu8086 gerçek mod x86 assembly için yeniden kullanılabilir düşük seviyeli yardımcı programlar ve örnek kodları. Öğrenme amaçlı bir repo.
 
 ---
 
