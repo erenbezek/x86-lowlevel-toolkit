@@ -1,31 +1,69 @@
 # x86-lowlevel-toolkit
 
-Reusable low-level utilities for emu8086 real-mode assembly development.
+emu8086 gerçek mod x86 assembly geliştirmesi için yeniden kullanılabilir düşük seviyeli yardımcı programlar ve örnek kodlar. Kişisel öğrenme projesi olarak başladı, zamanla büyütülmesi hedefleniyor.
 
-## Features
-- Math routines
-- Port I/O helpers
-- Example programs
-- ?
+---
 
-
-
-
-
-
+## Proje Yapısı
 ```
 x86-lowlevel-toolkit/
-│
 ├── README.md
-│
-├── src/
-│   │
-│   ├── math/
-│   │   └── fibonacci.asm
-│   │
-│   └── io/
-│       └── port_io.asm
-│
-└── examples/
-    └─
+└── src/
+├── math/
+│   ├── fibonacci.asm
+│   ├── prime.asm
+│   ├── factorial.asm
+│   ├── gcd.asm
+│   └── arithmetic.asm
+├── io/
+│   ├── print_char.asm
+│   ├── read_char.asm
+│   └── print_number.asm
+└── string/
+├── strlen.asm
+└── strcmp.asm
 ```
+## İçerik
+
+### Matematik
+
+**`fibonacci.asm`** — `DL` registerindeki değere en yakın iki Fibonacci sayısını bulur. Sonuç: `BH` = küçük, `BL` = büyük.
+
+**`prime.asm`** — `DL` ile belirlenen üst limite kadar tüm asal sayıları bulur ve `0700:0200h` adresinden itibaren belleğe yazar.
+
+**`factorial.asm`** — `DL` registerindeki sayının faktöriyelini hesaplar. Sonuç `AX`'e yazılır. 16-bit sınırı nedeniyle maksimum 8! desteklenir.
+
+**`gcd.asm`** — Öklid algoritmasıyla iki sayının En Büyük Ortak Bölenini (EBOB) bulur. Giriş: `BL`, `CL`. Sonuç: `AL`.
+
+**`arithmetic.asm`** — `BL` ve `CL` üzerinde temel aritmetik işlemler: toplama, çıkarma, çarpma, bölme. Sonuçlar `AX`'e yazılır.
+
+---
+
+### G/Ç (Giriş/Çıkış)
+
+**`print_char.asm`** — `DL` registerindeki ASCII karakteri DOS interrupt `21h / 02h` kullanarak ekrana yazdırır.
+
+**`read_char.asm`** — DOS interrupt `21h / 01h` kullanarak klavyeden tek karakter okur. Sonuç `AL`'e yazılır.
+
+**`print_number.asm`** — `AX` registerindeki sayıyı stack ve DOS interrupt kullanarak ondalık biçimde ekrana rakam rakam yazdırır.
+
+---
+
+### String
+
+**`strlen.asm`** — Null ile sonlanan bir string'in uzunluğunu hesaplar. Giriş: `SI` = string adresi. Sonuç: `CX` = uzunluk.
+
+**`strcmp.asm`** — İki null-terminated string'i karakter karakter karşılaştırır. Giriş: `SI`, `DI`. Sonuç: `AX = 0` eşitse, `AX = 1` farklıysa.
+
+---
+
+## Gereksinimler
+
+- [emu8086](https://emu8086-microprocessor-emulator.en.softonic.com/) — x86 gerçek mod emülatörü
+- Temel x86 register ve komut seti bilgisi
+
+---
+
+## Notlar
+
+Tüm programlar emu8086 ortamında (`org 100h`) modunda yazılmıştır. Register kullanımı emu8086 geleneklerine uygundur.
